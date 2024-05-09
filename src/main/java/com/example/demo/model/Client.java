@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
-import java.util.ArrayList;
+
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,10 +26,10 @@ public class Client {
 	private Adresse adresse;
 	
 	//@OneToMany(mappedBy = "client",  cascade= CascadeType.PERSIST)
-	private List<Compte> comptes = new ArrayList<Compte>();
+	private Set<Compte> comptes = new HashSet<Compte>();
 	
 	//liste de comptes getter/setter ?
-	public Client(String nom, String prenom, Adresse adresse, List<Compte> comptes) {
+	public Client(String nom, String prenom, Adresse adresse, Set<Compte> comptes) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
@@ -50,11 +51,11 @@ public class Client {
 		this.prenom = prenom;
 	}
 
-	public List<Compte> getComptes() {
+	public Set<Compte> getComptes() {
 		return comptes;
 	}
 
-	public void setComptes(List<Compte> comptes) {
+	public void setComptes(Set<Compte> comptes) {
 		this.comptes = comptes;
 	}
 

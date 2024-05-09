@@ -1,9 +1,9 @@
 package com.example.demo;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.boot.SpringApplication;
@@ -26,7 +26,7 @@ public class ProxiBanqueAeaApplication {
 		LocalDate date = LocalDate.now();
 		CompteCourant cc = new CompteCourant("1234", date, 500, "courant");
 		CompteEpargne ce = new CompteEpargne("12345", date, 500, "epargne");
-		List<Compte> comptes = new ArrayList<Compte>();
+		Set<Compte> comptes = new HashSet<Compte>();
 		comptes.add(cc);
 		comptes.add(ce);
 		Client c = new Client("nom","prenom",a,comptes);
