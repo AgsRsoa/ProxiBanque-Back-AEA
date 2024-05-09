@@ -24,7 +24,7 @@ public class ProxiBanqueAeaApplication {
 		Adresse a = new Adresse("ville", "473829","012234");
 		LocalDate date = LocalDate.now();
 		CompteCourant cc = new CompteCourant("1234", date, 500, "courant");
-		CompteEpargne ce = new CompteEpargne("1234", date, 500, "courant");
+		CompteEpargne ce = new CompteEpargne("12345", date, 500, "epargnes");
 		List<Compte> comptes = new ArrayList<Compte>();
 		comptes.add(cc);
 		comptes.add(ce);

@@ -43,9 +43,10 @@ public class Compte {
 	public LocalDate getDateOuverture() {
 		return dateOuverture;
 	}
+
 	@Override
 	public String toString() {
-		return "Compte [numeroDeCompte=" + numeroDeCompte + ", solde=" + solde + ", dateOuverture=" + dateOuverture
+		return "numeroDeCompte=" + numeroDeCompte + ", solde=" + solde + ", dateOuverture=" + dateOuverture
 				+ "]";
 	}
 	
