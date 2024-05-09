@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.Entity;
 
-@Entity
+//@Entity
 public class Gerant {
 
 }

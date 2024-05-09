@@ -1,13 +1,14 @@
 package com.example.demo.model;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class CompteEpargne extends Compte {
 
 	
 	private String typeCompte = "epargne";
 
-	public CompteEpargne(String numeroDeCompte, Date dateOuverture, double solde,String typeCompte) {
+	public CompteEpargne(String numeroDeCompte, LocalDate dateOuverture, double solde,String typeCompte) {
 		super(numeroDeCompte,solde, dateOuverture);
 		this.typeCompte = typeCompte;
 	}

@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -11,25 +13,26 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
-@Entity
+//@Entity
 public class Client {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//private Long id;
 	private String nom;
 	private String prenom;
 	
-	@Embedded
+	//@Embedded
 	private Adresse adresse;
 	
-	@OneToMany(mappedBy = "client",  cascade= CascadeType.PERSIST)
-	private Set<Compte> comptes = new HashSet<Compte>();
+	//@OneToMany(mappedBy = "client",  cascade= CascadeType.PERSIST)
+	private List<Compte> comptes = new ArrayList<Compte>();
 	
 	//liste de comptes getter/setter ?
-	public Client(String nom, String prenom, Adresse adresse) {
+	public Client(String nom, String prenom, Adresse adresse, List<Compte> comptes) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
+		this.comptes = comptes;
 
 	}
 	
@@ -47,11 +50,11 @@ public class Client {
 		this.prenom = prenom;
 	}
 
-	public Set<Compte> getComptes() {
+	public List<Compte> getComptes() {
 		return comptes;
 	}
 
-	public void setComptes(Set<Compte> comptes) {
+	public void setComptes(List<Compte> comptes) {
 		this.comptes = comptes;
 	}
 
@@ -62,10 +65,10 @@ public class Client {
 		this.adresse = adresse;
 	}
 
-
+// + id +
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", comptes="
+		return "Client [id="+ ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", comptes="
 				+ comptes + "]";
 	}
 

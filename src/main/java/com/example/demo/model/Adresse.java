@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.Embeddable;
 
-@Embeddable
+//@Embeddable
 public class Adresse {
 
 	
@@ -11,6 +11,12 @@ public class Adresse {
 	private String telephone;
 	
 	
+	public Adresse(String ville, String codePostale, String telephone) {
+
+		this.ville = ville;
+		this.codePostale = codePostale;
+		this.telephone = telephone;
+	}
 	public String getTelephone() {
 		return telephone;
 	}
