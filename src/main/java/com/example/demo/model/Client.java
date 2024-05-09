@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +18,8 @@ public class Client {
 	private Long id;
 	private String nom;
 	private String prenom;
+	
+	@Embedded
 	private Adresse adresse;
 	
 	@OneToMany(mappedBy = "client",  cascade= CascadeType.PERSIST)
