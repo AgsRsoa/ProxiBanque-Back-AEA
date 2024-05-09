@@ -14,18 +14,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
-//@Entity
+@Entity
 public class Client {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String nom;
 	private String prenom;
 	
-	//@Embedded
+	@Embedded
 	private Adresse adresse;
 	
-	//@OneToMany(mappedBy = "client",  cascade= CascadeType.PERSIST)
+	@OneToMany(mappedBy = "client",  cascade= CascadeType.PERSIST)
 	private Set<Compte> comptes = new HashSet<Compte>();
 	
 	//liste de comptes getter/setter ?
