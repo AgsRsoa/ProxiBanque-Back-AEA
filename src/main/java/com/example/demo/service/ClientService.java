@@ -6,6 +6,6 @@ import com.example.demo.model.Client;
 
 public interface ClientService {
 	
-	Optional<Client> getClientById();
+	Optional<Client> getClientById(Long id);
 
 }
