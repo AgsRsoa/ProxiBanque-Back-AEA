@@ -5,11 +5,11 @@ import java.util.Optional;
 import com.example.demo.model.Client;
 import com.example.demo.repository.ClientRepository;
 
-public class ClientServiceImpl implements ClientService {
+public class BanqueServiceImpl implements BanqueService {
 
 	private ClientRepository clientRepository;
 	
-	public ClientServiceImpl(ClientRepository clientrepo) {
+	public BanqueServiceImpl(ClientRepository clientrepo) {
 		clientRepository = clientrepo;
 		
 	}
