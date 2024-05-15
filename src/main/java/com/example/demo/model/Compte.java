@@ -12,14 +12,14 @@ import jakarta.persistence.ManyToOne;
 
 //@Entity
 public class Compte {
-	//@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String numeroDeCompte;
 	private double solde;
 	private LocalDate dateOuverture;
 	
-	//@ManyToOne
-	//@JoinColumn(name="compte_id")
+	@ManyToOne
+	@JoinColumn(name="compte_id")
 	private Client client;
 	
 	public Compte(String numeroDeCompte, double solde, LocalDate dateOuverture) {

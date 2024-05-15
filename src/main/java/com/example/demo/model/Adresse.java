@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.Embeddable;
 
-//@Embeddable
+@Embeddable
 public class Adresse {
 
 	

@@ -3,16 +3,20 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.example.demo.model.Client;
 import com.example.demo.repository.ClientRepository;
 
-public class BanqueServiceImpl implements BanqueService {
+@Service
+public class BankServiceImpl implements BankService {
 
 	private ClientRepository clientRepository;
 	
-	public BanqueServiceImpl(ClientRepository clientrepo) {
-		clientRepository = clientrepo;
-		
+	
+	public BankServiceImpl(ClientRepository clientRepository) {
+		//super();
+		this.clientRepository = clientRepository;
 	}
 	@Override
 	public Optional<Client> getClientById(Long id) {
@@ -25,5 +29,9 @@ public class BanqueServiceImpl implements BanqueService {
 	
 		return clientRepository.findAll();
 	}
-
+	@Override
+	public Client addClient(Client client) {
+		
+		return clientRepository.save(client);
+	}
 }

@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import com.example.demo.model.Client;
 
-public interface BanqueService {
-	
+public interface BankService {
+
 	Optional<Client> getClientById(Long id);
 	List<Client> getAllClients();
-
+	Client addClient(Client client);
 }
