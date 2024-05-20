@@ -14,7 +14,7 @@ import com.example.demo.service.BankService;
 
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+//@CrossOrigin(origins="http://localhost:4200")
 //@CrossOrigin(origins ="http://localhost:4200", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("clients")
 public class ClientController {

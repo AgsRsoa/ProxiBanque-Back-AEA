@@ -22,50 +22,45 @@ public class Client {
 	private Long id;
 	private String nom;
 	private String prenom;
-	private String login;
-	private String motDePasse;
-	
-	
-//	@Embedded
-//	private Adresse adresse;
+	@Embedded
+	private Adresse adresse;
 //	
 //	@OneToMany(mappedBy = "client",  cascade= CascadeType.PERSIST)
 //	private Set<Compte> comptes = new HashSet<Compte>();
 	
 	//liste de comptes getter/setter ?
-//	public Client(String nom, String prenom,Adresse adresse,Set<Compte> comptes){ 
-//		this.nom = nom;
-//		this.prenom = prenom;
-////		this.adresse = adresse;
-////		this.comptes = comptes;
-//
-//	}
-	
-
-	public String getNom() {
-		return nom;
-	}
-	public Client(Long id, String nom, String prenom, String login, String motDePasse) {
-	
-		this.id = id;
+	public Client(String nom, String prenom,Adresse adresse){ //Set<Compte> comptes
 		this.nom = nom;
 		this.prenom = prenom;
-		this.login = login;
-		this.motDePasse = motDePasse;
+		this.adresse = adresse;
+//		this.comptes = comptes;
+
 	}
+	
+
 	
 	public Client() {
 		
 	}
+	public String getNom() {
+		return nom;
+	}
 //	public void setNom(String nom) {
 //		this.nom = nom;
 //	}
-//	public String getPrenom() {
-//		return prenom;
-//	}
+	public String getPrenom() {
+		return prenom;
+	}
 //	public void setPrenom(String prenom) {
 //		this.prenom = prenom;
 //	}
+
+
+	public Adresse getAdresse() {
+		return adresse;
+	}
+	
+	
 
 //	public Set<Compte> getComptes() {
 //		return comptes;
@@ -75,9 +70,6 @@ public class Client {
 //		this.comptes = comptes;
 //	}
 //
-//	public Adresse getAdresse() {
-//		return adresse;
-//	}
 //	public void setAdresse(Adresse adresse) {
 //		this.adresse = adresse;
 //	}

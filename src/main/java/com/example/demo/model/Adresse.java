@@ -17,6 +17,10 @@ public class Adresse {
 		this.codePostale = codePostale;
 		this.telephone = telephone;
 	}
+	
+	public Adresse() {
+		
+	}
 	public String getTelephone() {
 		return telephone;
 	}
