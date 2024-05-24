@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -19,15 +20,15 @@ public class Client {
 	@Embedded
 	private Adresse adresse;
 	@OneToOne(cascade = {CascadeType.PERSIST})
-	private Compte compte;
+	@JoinColumn(name="compte_id")
+	private CompteCourant compteCourant;
 	
-	//liste de comptes getter/setter ?
-	public Client(String nom, String prenom,Adresse adresse, Compte compte){ 
+
+	public Client(String nom, String prenom,Adresse adresse, CompteCourant compteCourant){ 
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
-		this.compte = compte;
-
+		this.compteCourant = compteCourant;
 	}
 	
 
@@ -63,9 +64,21 @@ public class Client {
 
 
 
-	public Compte getCompte() {
-		return compte;
+	public CompteCourant getCompteCourant() {
+		return compteCourant;
 	}
+
+
+
+	public void setCompteCourant(CompteCourant compteCourant) {
+		this.compteCourant = compteCourant;
+	}
+
+
+
+
+	
+	
 	
 
 //
@@ -74,13 +87,11 @@ public class Client {
 //	}
 	
 	
-//
-//// + id +
-//	@Override
-//	public String toString() {
-//		return "Client [id="+ ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", comptes="
-//				+ comptes + "]";
-//	}
+
+	@Override
+	public String toString() {
+		return "Client [id="+  id +", Nom=" + nom + ", Prenom=" + prenom + ", Adresse:"+ "Ville=" + adresse.getVille() +" CodePostale="+ adresse.getCodePostale()+" Telephone="+adresse.getTelephone() + " CompteCourant="+compteCourant+ "]";
+	}
 
 
 	

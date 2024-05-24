@@ -10,13 +10,11 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class IdentiteCompte {
 	
-
-	
 	
 	private String numeroDeCompte;
 	private double solde;
 	private LocalDate dateOuverture;
-	
+
 	
 	
 	public IdentiteCompte(String numeroDeCompte, double solde, LocalDate dateOuverture) {
@@ -24,8 +22,10 @@ public class IdentiteCompte {
 		this.numeroDeCompte = numeroDeCompte;
 		this.solde = solde;
 		this.dateOuverture = dateOuverture;
+	
 	}
 	
+
 	public IdentiteCompte() {
 		
 	}

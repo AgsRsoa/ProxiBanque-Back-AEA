@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -24,8 +23,7 @@ public class CompteCourant {
 	private double decouvert = -1000;
 	private String typeCompte="courant";
 	
-	@OneToOne(cascade=CascadeType.PERSIST)
-	@MapsId
+	@OneToOne(mappedBy="compteCourant",cascade=CascadeType.PERSIST)
 	private Client client;
 
 	public CompteCourant(IdentiteCompte infos) { 

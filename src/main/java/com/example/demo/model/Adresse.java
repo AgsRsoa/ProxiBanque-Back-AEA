@@ -44,9 +44,9 @@ public class Adresse {
 	public void setCodePostale(String codePostale) {
 		this.codePostale = codePostale;
 	}
-	@Override
-	public String toString() {
-		return "Adresse [ville=" + ville + ", codePostale=" + codePostale + ", telephone=" + telephone + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Adresse [ville=" + ville + ", codePostale=" + codePostale + ", telephone=" + telephone + "]";
+//	}
 
 }

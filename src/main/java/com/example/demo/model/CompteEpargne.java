@@ -7,7 +7,6 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 
 
@@ -22,7 +21,6 @@ public class CompteEpargne  {
 	private String typeCompte = "epargne";
 	
 	@OneToOne(cascade=CascadeType.PERSIST)
-	@MapsId
 	private Client client;
 
 	public CompteEpargne( IdentiteCompte infos) {

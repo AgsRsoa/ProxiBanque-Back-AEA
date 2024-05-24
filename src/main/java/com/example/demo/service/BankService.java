@@ -10,4 +10,6 @@ public interface BankService {
 	Optional<Client> getClientById(Long id);
 	List<Client> getAllClients();
 	Client addClient(Client client);
+	void deleteClient(Long id);
+	Optional<Client> updateClient(Long id, Client client);
 }

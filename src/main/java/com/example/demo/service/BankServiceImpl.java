@@ -34,4 +34,15 @@ public class BankServiceImpl implements BankService {
 		
 		return clientRepository.save(client);
 	}
+	@Override
+	public void deleteClient(Long id) {
+		//if solde === 0
+		 clientRepository.deleteById(id);
+		
+	}
+	@Override
+	public Optional<Client> updateClient(Long id, Client client) {
+		// TODO Auto-generated method stub
+		return Optional.empty();
+	}
 }
