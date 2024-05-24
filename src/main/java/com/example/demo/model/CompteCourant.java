@@ -1,18 +1,42 @@
 package com.example.demo.model;
 
-import java.time.LocalDate;
 
 
-public class CompteCourant extends Compte {
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
+
+@Entity
+public class CompteCourant {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Embedded
+	private IdentiteCompte infos;
 	
 	private double decouvert = -1000;
-	private String typeCompte = "courant";
+	private String typeCompte="courant";
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
+	@MapsId
+	private Client client;
 
-	public CompteCourant(String numeroDeCompte, LocalDate dateOuverture, double solde,String typeCompte) {
-		super(numeroDeCompte,solde, dateOuverture);
-		this.typeCompte = typeCompte;
+	public CompteCourant(IdentiteCompte infos) { 
+		this.infos = infos;
+	}
+	
+	public CompteCourant() {
+		
 	}
 
+	
 	public double getDecouvert() {
 		return decouvert;
 	}
@@ -22,9 +46,23 @@ public class CompteCourant extends Compte {
 	}
 
 	
+	public String getTypeCompte() {
+		return typeCompte;
+	}
+
+	public void setTypeCompte(String typeCompte) {
+		this.typeCompte = typeCompte;
+	}
+	
+	
+
+	public IdentiteCompte getInfos() {
+		return infos;
+	}
+
 	@Override
 	public String toString() {
-		return  "CompteCourant [" + super.toString() +  "[decouvert=" + decouvert + ", typeCompte=" + typeCompte + "]";
+		return  "CompteCourant " + "[" +"NumeroDeCompte="+ infos.getNumeroDeCompte()+"Solde=" +infos.getSolde() +"Date Ouverture" +infos.getDateOuverture() + "decouvert=" + decouvert + ", typeCompte=" + typeCompte + "]";
 	}
 
 	

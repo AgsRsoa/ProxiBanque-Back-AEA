@@ -1,19 +1,13 @@
 package com.example.demo.model;
 
 
-
-import java.util.HashSet;
-
-import java.util.List;
-import java.util.Set;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Client {
@@ -24,16 +18,15 @@ public class Client {
 	private String prenom;
 	@Embedded
 	private Adresse adresse;
-//	
-//	@OneToMany(mappedBy = "client",  cascade= CascadeType.PERSIST)
-//	private Set<Compte> comptes = new HashSet<Compte>();
+	@OneToOne(cascade = {CascadeType.PERSIST})
+	private Compte compte;
 	
 	//liste de comptes getter/setter ?
-	public Client(String nom, String prenom,Adresse adresse){ //Set<Compte> comptes
+	public Client(String nom, String prenom,Adresse adresse, Compte compte){ 
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
-//		this.comptes = comptes;
+		this.compte = compte;
 
 	}
 	
@@ -42,6 +35,14 @@ public class Client {
 	public Client() {
 		
 	}
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+
+
 	public String getNom() {
 		return nom;
 	}
@@ -59,20 +60,20 @@ public class Client {
 	public Adresse getAdresse() {
 		return adresse;
 	}
-	
+
+
+
+	public Compte getCompte() {
+		return compte;
+	}
 	
 
-//	public Set<Compte> getComptes() {
-//		return comptes;
-//	}
-//
-//	public void setComptes(Set<Compte> comptes) {
-//		this.comptes = comptes;
-//	}
 //
 //	public void setAdresse(Adresse adresse) {
 //		this.adresse = adresse;
 //	}
+	
+	
 //
 //// + id +
 //	@Override
