@@ -24,8 +24,7 @@ public class ProxiBanqueAeaApplication {
 //		//Créer des nouveaux clients
 //		//Créer des nouveaux comptes des 2 types
 		Adresse a = new Adresse("ville", "473829","012234");
-		LocalDate date = LocalDate.now();
-		IdentiteCompte infos = new IdentiteCompte("1234",200.0,date);
+		IdentiteCompte infos = new IdentiteCompte("1234",200.0);
 		CompteCourant cc = new CompteCourant(infos); //String,Localdate,int,String
 		
 		Client client = new Client("nom","prenom",a,cc);

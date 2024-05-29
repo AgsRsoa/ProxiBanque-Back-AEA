@@ -13,15 +13,15 @@ public class IdentiteCompte {
 	
 	private String numeroDeCompte;
 	private double solde;
-	private LocalDate dateOuverture;
+	private LocalDate dateOuverture = LocalDate.now() ;
 
 	
 	
-	public IdentiteCompte(String numeroDeCompte, double solde, LocalDate dateOuverture) {
+	public IdentiteCompte(String numeroDeCompte, double solde) {
 	
 		this.numeroDeCompte = numeroDeCompte;
 		this.solde = solde;
-		this.dateOuverture = dateOuverture;
+	
 	
 	}
 	

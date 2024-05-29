@@ -4,15 +4,19 @@ import java.util.List;
 
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.MessageDto;
 import com.example.demo.model.Client;
 import com.example.demo.model.CompteCourant;
 import com.example.demo.model.CompteEpargne;
@@ -49,9 +53,20 @@ public class ClientController {
 		
 	}
 	
-	@DeleteMapping("{id}")
-	public void deleteClient(@PathVariable Long id) {
-		 service.deleteClient(id);
+	@PutMapping({"{id}", ""})
+	public Client putClient(@PathVariable(value="id", required=false) Long id, @RequestBody Client client){
+		if(id!=null)
+			client.setId(id);
+		System.out.println("client to update:" + client);
+		return service.updateClient(client);
 	}
+	
+	@DeleteMapping("{id}")
+	public ResponseEntity deleteClient(@PathVariable Long id) {
+		 service.deleteClient(id);
+		 return new ResponseEntity<>(new MessageDto("Client deleted with id :" + id),HttpStatus.OK);
+	}
+	
+
 
 }

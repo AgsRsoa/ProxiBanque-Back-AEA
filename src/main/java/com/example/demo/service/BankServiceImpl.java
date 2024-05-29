@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -8,9 +9,12 @@ import org.springframework.stereotype.Service;
 import com.example.demo.model.Client;
 import com.example.demo.repository.ClientRepository;
 
+//import com.example.demo.exception.NotFoundException;
+
 @Service
 public class BankServiceImpl implements BankService {
 
+	
 	private ClientRepository clientRepository;
 	
 	
@@ -35,14 +39,18 @@ public class BankServiceImpl implements BankService {
 		return clientRepository.save(client);
 	}
 	@Override
-	public void deleteClient(Long id) {
-		//if solde === 0
-		 clientRepository.deleteById(id);
+	public Client updateClient(Client client) {
+		
+		return clientRepository.save(client);
 		
 	}
 	@Override
-	public Optional<Client> updateClient(Long id, Client client) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+	public void deleteClient(Long id) //throws NotFoundException
+	{
+		/*if(!clientRepository.existsById(id))
+			throw new NotFoundException("account not found with id=" +id); */
+		//if solde === 0
+		 clientRepository.deleteById(id);
+		
 	}
 }
