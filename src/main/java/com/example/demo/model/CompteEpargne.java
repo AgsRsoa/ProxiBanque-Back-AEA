@@ -1,16 +1,18 @@
 package com.example.demo.model;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToOne;
 
-
-public class CompteEpargne  {
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class CompteEpargne extends Compte  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
