@@ -64,7 +64,7 @@ public class ClientController {
 	@DeleteMapping("{id}")
 	public ResponseEntity deleteClient(@PathVariable Long id) {
 		 service.deleteClient(id);
-		 return new ResponseEntity<>(new MessageDto("Client deleted with id :" + id),HttpStatus.OK);
+		 return new ResponseEntity<>(new MessageDto("Client with id " + id + " deleted"),HttpStatus.OK);
 	}
 	
 
