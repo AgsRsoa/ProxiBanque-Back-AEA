@@ -18,6 +18,8 @@ import com.example.demo.model.IdentiteCompte;
 
 @SpringBootApplication
 public class ProxiBanqueAeaApplication {
+	
+	// on fait un test github !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProxiBanqueAeaApplication.class, args);
