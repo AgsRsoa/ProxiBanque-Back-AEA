@@ -49,12 +49,18 @@ public class BankServiceImpl implements BankService {
 	@Override
 	public void deleteClient(Long id) //throws NotFoundException
 	{
+//		if(!clientRepository.existsById(id))
+//			throw new NotFoundException("account not found with id=" +id); 
+//	if(	clientRepository.findById(id).get().getCompteCourant().getInfos().getSolde() == 0.0) {
+//		
+//		clientRepository.deleteById(id);
+//	}else throw new BankException("Pas de suppression possible car le compte a un solde positif ou négatif" +clientRepository.findById(id).get().getCompteCourant().getInfos().getSolde() );
+//		
+		
 		if(!clientRepository.existsById(id))
 			throw new NotFoundException("account not found with id=" +id); 
-	if(	clientRepository.findById(id).get().getCompteCourant().getInfos().getSolde() == 0.0) {
-		
-		clientRepository.deleteById(id);
-	}else throw new BankException("Pas de suppression possible car le compte a un solde positif ou négatif" +clientRepository.findById(id).get().getCompteCourant().getInfos().getSolde() )
-		
-	}
+		if(	clientRepository.findById(id).get().getCompteCourant().getSolde()==0.0 || clientRepository.findById(id).get().getCompteEpargne().getSolde() == 0.0 ) {
+			clientRepository.deleteById(id);
+	}else throw new BankException("Pas de suppression possible car le compte a un solde positif ou négatif");
+}
 }

@@ -20,15 +20,19 @@ public class Client {
 	@Embedded
 	private Adresse adresse;
 	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="compte_id")
+	@JoinColumn(name="compte_courant_id")
 	private CompteCourant compteCourant;
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name="compte_epargne_id")
+	private CompteEpargne compteEpargne;
 	
 
-	public Client(String nom, String prenom,Adresse adresse, CompteCourant compteCourant){ 
+	public Client(String nom, String prenom,Adresse adresse, CompteCourant compteCourant){  //,CompteEpargne compteEpargne
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
 		this.compteCourant = compteCourant;
+		this.compteEpargne = compteEpargne;
 	}
 	
 
@@ -93,9 +97,21 @@ public class Client {
 
 	
 
+	public CompteEpargne getCompteEpargne() {
+		return compteEpargne;
+	}
+
+
+
+	public void setCompteEpargne(CompteEpargne compteEpargne) {
+		this.compteEpargne = compteEpargne;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Client [id="+  id +", Nom=" + nom + ", Prenom=" + prenom + ", Adresse:"+ "Ville=" + adresse.getVille() +" CodePostale="+ adresse.getCodePostale()+" Telephone="+adresse.getTelephone() + " CompteCourant="+compteCourant+ "]";
+		return "Client [id="+  id +", Nom=" + nom + ", Prenom=" + prenom + ", Adresse:"+ "Ville=" + adresse.getVille() +" CodePostale="+ adresse.getCodePostale()+" Telephone="+adresse.getTelephone() + " CompteCourant="+compteCourant+"CompteEpargne="+compteEpargne +"]";
 	}
 
 

@@ -18,8 +18,8 @@ public class IdentiteCompte {
 	
 	
 	public IdentiteCompte(String numeroDeCompte, double solde) {
+	   this.numeroDeCompte=numeroDeCompte;
 	
-		this.numeroDeCompte = numeroDeCompte;
 		this.solde = solde;
 	
 	

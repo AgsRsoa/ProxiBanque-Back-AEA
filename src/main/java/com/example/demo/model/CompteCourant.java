@@ -16,24 +16,29 @@ import jakarta.persistence.OneToOne;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class CompteCourant extends Compte{
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private Long id;
 	
-	@Embedded
-	private IdentiteCompte infos;
+//	@Embedded
+//	private IdentiteCompte infos;
+	
 	
 	private double decouvert = -1000;
-	private String typeCompte="courant";
 	
-	@OneToOne(mappedBy="compteCourant",cascade=CascadeType.PERSIST)
-	private Client client;
+//	@OneToOne(mappedBy="compteCourant",cascade=CascadeType.PERSIST)
+//	private Client client;
 
-	public CompteCourant(IdentiteCompte infos) { 
-		this.infos = infos;
-	}
+//	public CompteCourant(IdentiteCompte infos) { 
+//		this.infos = infos;
+//	}
 	
+//	
 	public CompteCourant() {
+		// TODO Auto-generated constructor stub
+	}
+	public CompteCourant(String numeroDeCompte, double solde) {
+		super(numeroDeCompte,solde);
 		
 	}
 
@@ -47,24 +52,23 @@ public class CompteCourant extends Compte{
 	}
 
 	
-	public String getTypeCompte() {
-		return typeCompte;
-	}
 
-	public void setTypeCompte(String typeCompte) {
-		this.typeCompte = typeCompte;
-	}
-	
-	
-
-	public IdentiteCompte getInfos() {
-		return infos;
-	}
 
 	@Override
 	public String toString() {
-		return  "CompteCourant " + "[" +"NumeroDeCompte="+ infos.getNumeroDeCompte()+"Solde=" +infos.getSolde() +"Date Ouverture" +infos.getDateOuverture() + "decouvert=" + decouvert + ", typeCompte=" + typeCompte + "]";
+		return "CompteCourant [" + super.toString()+ "decouvert=" + decouvert + "]"; // typeCompte=" + typeCompte + 
 	}
+	
+	
+
+//	public IdentiteCompte getInfos() {
+//		return infos;
+//	}
+
+//	@Override
+//	public String toString() {
+//		return  "CompteCourant " + "[" +"NumeroDeCompte="+ infos.getNumeroDeCompte()+"Solde=" +infos.getSolde() +"Date Ouverture" +infos.getDateOuverture() + "decouvert=" + decouvert + ", typeCompte=" + typeCompte + "]";
+//	}
 
 	
 	
