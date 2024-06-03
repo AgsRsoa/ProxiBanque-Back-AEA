@@ -86,6 +86,18 @@ public class Client {
 
 
 
+	public List<Compte> getComptes() {
+		return comptes;
+	}
+
+
+
+	public void setComptes(List<Compte> comptes) {
+		this.comptes = comptes;
+	}
+
+
+
 //	public CompteCourant getCompteCourant() {
 //		return compteCourant;
 //	}

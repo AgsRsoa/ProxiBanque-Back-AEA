@@ -56,11 +56,29 @@ public class BankServiceImpl implements BankService {
 //		clientRepository.deleteById(id);
 //	}else throw new BankException("Pas de suppression possible car le compte a un solde positif ou négatif" +clientRepository.findById(id).get().getCompteCourant().getInfos().getSolde() );
 //		
+//		
+//		if(!clientRepository.existsById(id))
+//			throw new NotFoundException("account not found with id=" +id); 
+//		if(	clientRepository.findById(id).get().getCompteCourant().getSolde()==0.0 || clientRepository.findById(id).get().getCompteEpargne().getSolde() == 0.0 ) {
+//			clientRepository.deleteById(id);
+//	}else throw new BankException("Pas de suppression possible car le compte a un solde positif ou négatif");
+		clientRepository.deleteById(id);
 		
-		if(!clientRepository.existsById(id))
-			throw new NotFoundException("account not found with id=" +id); 
-		if(	clientRepository.findById(id).get().getCompteCourant().getSolde()==0.0 || clientRepository.findById(id).get().getCompteEpargne().getSolde() == 0.0 ) {
-			clientRepository.deleteById(id);
-	}else throw new BankException("Pas de suppression possible car le compte a un solde positif ou négatif");
 }
+	//Liste des comptes getAllComptes() => findAll()
+	//Affichage d'1 compte getCompteById() => findById()
+	//@Component avec de comptes pour peupler
+	//Liste des comptes d'1 client : findByClientId >renvoie comptes
+	//AddCompteCourant trouver le client, cc = new CompteCourant + cc.set (client et attributs), comptesRepository.save(cc) //numero de client id sur front
+	//AddCompteEpargne
+	//UpdateCompte
+	//Delete 1 seul type de compte 
+	
+	
+	/*List<Compte> ComptesClient(compte id) 1- 	compteClient = findCompteByClientId(Long id)*/
+	
+	
+	
+	
+		
 }
