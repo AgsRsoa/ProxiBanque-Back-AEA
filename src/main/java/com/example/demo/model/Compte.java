@@ -9,7 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) 
@@ -20,7 +21,8 @@ public class Compte {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	@OneToOne(mappedBy="compteCourant",cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="client_id")
 	private Client client;
 
 	private String numeroDeCompte;

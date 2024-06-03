@@ -1,14 +1,15 @@
 package com.example.demo.model;
 
 
-import jakarta.persistence.CascadeType;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Client {
@@ -19,20 +20,21 @@ public class Client {
 	private String prenom;
 	@Embedded
 	private Adresse adresse;
-	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="compte_courant_id")
-	private CompteCourant compteCourant;
-	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="compte_epargne_id")
-	private CompteEpargne compteEpargne;
+//	
+//	@OneToOne(cascade = {CascadeType.ALL})
+//	@JoinColumn(name="compte_courant_id")
+//	private CompteCourant compteCourant;
+//	@OneToOne(cascade = {CascadeType.ALL})
+//	@JoinColumn(name="compte_epargne_id")
+//	private CompteEpargne compteEpargne;
 	
+	@OneToMany(mappedBy = "client")
+	private List<Compte> comptes = new ArrayList<>();
 
-	public Client(String nom, String prenom,Adresse adresse, CompteCourant compteCourant){  //,CompteEpargne compteEpargne
+	public Client(String nom, String prenom,Adresse adresse){  //, CompteCourant compteCourantCompteEpargne compteEpargne
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
-		this.compteCourant = compteCourant;
-		this.compteEpargne = compteEpargne;
 	}
 	
 
@@ -84,35 +86,35 @@ public class Client {
 
 
 
-	public CompteCourant getCompteCourant() {
-		return compteCourant;
-	}
+//	public CompteCourant getCompteCourant() {
+//		return compteCourant;
+//	}
+//
+//
+//
+//	public void setCompteCourant(CompteCourant compteCourant) {
+//		this.compteCourant = compteCourant;
+//	}
+//
+//
+//	
+//
+//	public CompteEpargne getCompteEpargne() {
+//		return compteEpargne;
+//	}
+//
+//
+//
+//	public void setCompteEpargne(CompteEpargne compteEpargne) {
+//		this.compteEpargne = compteEpargne;
+//	}
 
 
-
-	public void setCompteCourant(CompteCourant compteCourant) {
-		this.compteCourant = compteCourant;
-	}
-
-
-	
-
-	public CompteEpargne getCompteEpargne() {
-		return compteEpargne;
-	}
-
-
-
-	public void setCompteEpargne(CompteEpargne compteEpargne) {
-		this.compteEpargne = compteEpargne;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "Client [id="+  id +", Nom=" + nom + ", Prenom=" + prenom + ", Adresse:"+ "Ville=" + adresse.getVille() +" CodePostale="+ adresse.getCodePostale()+" Telephone="+adresse.getTelephone() + " CompteCourant="+compteCourant+"CompteEpargne="+compteEpargne +"]";
-	}
+//
+//	@Override
+//	public String toString() {
+//		return "Client [id="+  id +", Nom=" + nom + ", Prenom=" + prenom + ", Adresse:"+ "Ville=" + adresse.getVille() +" CodePostale="+ adresse.getCodePostale()+" Telephone="+adresse.getTelephone() + " CompteCourant="+compteCourant+"CompteEpargne="+compteEpargne +"]";
+//	}
 
 
 	
