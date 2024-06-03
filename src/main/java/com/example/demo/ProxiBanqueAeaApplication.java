@@ -22,7 +22,9 @@ public class ProxiBanqueAeaApplication {
 
 
 	public static void main(String[] args) {
+		System.setProperty("spring.profiles.active", "initDataSet");
 		SpringApplication.run(ProxiBanqueAeaApplication.class, args);
+		
 //		//Créer des nouveaux clients
 //		//Créer des nouveaux comptes des 2 types
 //		Adresse a = new Adresse("ville", "473829","012234");

@@ -1,28 +1,34 @@
 package com.example.demo.service;
 
 import java.util.List;
-
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.exception.BankException;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.Client;
+import com.example.demo.model.Compte;
+import com.example.demo.model.CompteCourant;
 import com.example.demo.repository.ClientRepository;
+import com.example.demo.repository.CompteRepository;
 
-//import com.example.demo.exception.NotFoundException;
+import jakarta.transaction.Transactional;
+
+
 
 @Service
+@Transactional
 public class BankServiceImpl implements BankService {
 
 	
 	private ClientRepository clientRepository;
 	
+	private CompteRepository compteRepository;
 	
-	public BankServiceImpl(ClientRepository clientRepository) {
+	public BankServiceImpl(ClientRepository clientRepository,CompteRepository compteRepository) {
 		//super();
 		this.clientRepository = clientRepository;
+		this.compteRepository = compteRepository ;
 	}
 	@Override
 	public Optional<Client> getClientById(Long id) {
@@ -65,13 +71,43 @@ public class BankServiceImpl implements BankService {
 		clientRepository.deleteById(id);
 		
 }
-	//Liste des comptes getAllComptes() => findAll()
-	//Affichage d'1 compte getCompteById() => findById()
-	//@Component avec de comptes pour peupler
+
+
+
+	
+	
+	public CompteCourant addCompteCourant(Long clientId,String numeroDeCompte, double solde) {
+		
+		Optional<Client> optionalClient  = clientRepository.findById(clientId);
+		
+		if(optionalClient.isEmpty()) {
+			throw new NotFoundException("Client avec l'id " +clientId+" non trouvé");
+		}
+			
+		CompteCourant compteCourant = new CompteCourant();
+		compteCourant.setNumeroDeCompte(numeroDeCompte);
+		compteCourant.setSolde(solde);
+		compteCourant.setClient(optionalClient.get()); 
+	
+		
+	
+		return compteRepository.save(compteCourant);
+	}
+	// TODO AddCompteEpargne
+
+	public List<Compte> getAllCompte() {
+		// TODO Auto-generated method stub
+		return compteRepository.findAll();
+	}
+	@Override
+	public Optional<Compte> getCompteById(Long id) {
+		return compteRepository.findById(id); //  findById()
+	}
+	
 	//Liste des comptes d'1 client : findByClientId >renvoie comptes
-	//AddCompteCourant trouver le client, cc = new CompteCourant + cc.set (client et attributs), comptesRepository.save(cc) //numero de client id sur front
-	//AddCompteEpargne
+	
 	//UpdateCompte
+	
 	//Delete 1 seul type de compte 
 	
 	

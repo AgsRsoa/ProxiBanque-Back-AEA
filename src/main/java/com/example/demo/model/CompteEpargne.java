@@ -21,6 +21,7 @@ public class CompteEpargne extends Compte  {
 //	@Embedded
 //	private IdentiteCompte infos;
 
+
 	private Double tauxDeRemuneration= 0.03;
 	
 //	@OneToOne(cascade=CascadeType.PERSIST)
@@ -39,10 +40,6 @@ public class CompteEpargne extends Compte  {
 		super(numeroDeCompte,solde);
 		
 	}
-	@Override
-	public String toString() {
-		return "CompteEpargne ["+ super.toString()+ "tauxDeRemuneration=" + tauxDeRemuneration + "]"; //+"typeCompte=" + typeCompte + "
-	}
 
 	public Double getTauxDeRemuneration() {
 		return tauxDeRemuneration;
@@ -50,6 +47,12 @@ public class CompteEpargne extends Compte  {
 
 	public void setTauxDeRemuneration(Double tauxDeRemuneration) {
 		this.tauxDeRemuneration = tauxDeRemuneration;
+	}
+
+
+	@Override
+	public String toString() {
+		return "CompteEpargne ["+ super.toString()+ "tauxDeRemuneration=" + tauxDeRemuneration + "]"; //+"typeCompte=" + typeCompte + "
 	}
 
 

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.model.Client;
+import com.example.demo.model.Compte;
+import com.example.demo.model.CompteCourant;
 
 public interface BankService {
 
@@ -17,5 +19,10 @@ public interface BankService {
 	
 	void deleteClient(Long id);
 	
+    Optional<Compte> getCompteById(Long id);
+	
+	List<Compte> getAllCompte();
+	
+	CompteCourant addCompteCourant(Long clientId,String numeroDeCompte, double solde);
 	
 }

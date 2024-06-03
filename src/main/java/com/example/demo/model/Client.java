@@ -4,6 +4,8 @@ package com.example.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,7 @@ public class Client {
 //	private CompteEpargne compteEpargne;
 	
 	@OneToMany(mappedBy = "client")
+	@JsonIgnore
 	private List<Compte> comptes = new ArrayList<>();
 
 	public Client(String nom, String prenom,Adresse adresse){  //, CompteCourant compteCourantCompteEpargne compteEpargne

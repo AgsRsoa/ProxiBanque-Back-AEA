@@ -3,6 +3,8 @@ package com.example.demo.model;
 import java.time.LocalDate;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +15,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE) 
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type_compte") //fixe la valeur avec les sous classes
 public class Compte {
 	
 	//méthodes créditer et débiter
@@ -24,7 +27,8 @@ public class Compte {
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="client_id")
 	private Client client;
-
+	@Column(name="type_compte",insertable = false,updatable = false)
+	private String typeCompte;
 	private String numeroDeCompte;
 	private double solde;
 	private LocalDate dateOuverture = LocalDate.now() ;
@@ -67,6 +71,29 @@ public class Compte {
 		this.dateOuverture = dateOuverture;
 	}
 	
+	
+	
+	public Client getClient() {
+		return client;
+	}
+
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	
+
+	public String getTypeCompte() {
+		return typeCompte;
+	}
+
+
+	public void setTypeCompte(String typeCompte) {
+		this.typeCompte = typeCompte;
+	}
+
+
 	@Override
 	public String toString() {
 		return "numeroDeCompte="+ numeroDeCompte + ", solde=" + solde + ", dateOuverture=" + dateOuverture

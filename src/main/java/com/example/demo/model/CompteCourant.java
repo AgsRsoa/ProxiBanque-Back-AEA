@@ -23,7 +23,6 @@ public class CompteCourant extends Compte{
 //	@Embedded
 //	private IdentiteCompte infos;
 	
-	
 	private double decouvert = -1000;
 	
 //	@OneToOne(mappedBy="compteCourant",cascade=CascadeType.PERSIST)
@@ -53,11 +52,12 @@ public class CompteCourant extends Compte{
 
 	
 
-
 	@Override
 	public String toString() {
 		return "CompteCourant [" + super.toString()+ "decouvert=" + decouvert + "]"; // typeCompte=" + typeCompte + 
 	}
+	
+
 	
 	
 
