@@ -3,9 +3,13 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Compte;
@@ -30,6 +34,23 @@ public class CompteController {
 	@GetMapping("{id}")
 	public Optional<Compte> getOneCompte(@PathVariable Long id) {
 		return service.getCompteById(id);
+	}
+	
+	//URL => /comptes?typeCompte=courant&idClient=5/6
+	@PostMapping("")
+	public Compte addCompte(@RequestBody Compte compte, @RequestParam(value="typeCompte",required=false) String typeCompte,@RequestParam(value="idClient") Long idClient) {//a voir si type de compte est dans l'objet compte renvoyé par Angular
+		
+		if(typeCompte == null || typeCompte.equalsIgnoreCase("courant")) {
+			return 	service.addCompteCourant(idClient, compte.getNumeroDeCompte(), compte.getSolde());
+		}else {
+			return service.addCompteEpargne(idClient, compte.getNumeroDeCompte(), compte.getSolde());
+		}
+
+	}
+	
+	@DeleteMapping("{id}")
+	public void deleteCompte(@PathVariable("id") Long id) {
+		service.deleteCompte(id);
 	}
 
 }

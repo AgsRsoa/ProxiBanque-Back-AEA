@@ -40,7 +40,24 @@ public class InitDataSet {
 		service.addClient(c3);
 		service.addCompteCourant(c3.getId(),"C3",-200.0); 
 		
-		//service.addCompteEpargne(new Compte(null,"compteB",150.0));
+		Adresse a4 = new Adresse("Los Angeles","78382","(093) 567-376") ;
+		Client c4 = new Client("John","Smith",a4);
+		
+		service.addClient(c4);
+		service.addCompteEpargne(c4.getId(), "C4", 0.0);
+		
+		Adresse a5 = new Adresse("NYC","43526","444) 567-333");
+		Client c5 = new Client("Sam","Wilson",a5);
+		
+		service.addClient(c5);
+		service.addCompteEpargne(c5.getId(), "C5", 1500.0);
+	
+		Adresse a6 = new Adresse("San Diego","78394","(999)567-376");
+		Client c6 = new Client("Barbara","Oreilly",a6);
+		
+		service.addClient(c6);
+		service.addCompteEpargne(c6.getId(), "C5", -500.0);
+	
 } 
 	
 }

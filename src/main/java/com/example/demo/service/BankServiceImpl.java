@@ -9,6 +9,7 @@ import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.Client;
 import com.example.demo.model.Compte;
 import com.example.demo.model.CompteCourant;
+import com.example.demo.model.CompteEpargne;
 import com.example.demo.repository.ClientRepository;
 import com.example.demo.repository.CompteRepository;
 
@@ -95,6 +96,26 @@ public class BankServiceImpl implements BankService {
 	}
 	// TODO AddCompteEpargne
 
+	@Override
+	public CompteEpargne addCompteEpargne(Long clientId, String numeroDeCompte, double solde) {
+		
+		Optional<Client> optionalClient  = clientRepository.findById(clientId);
+		
+		if(optionalClient.isEmpty()) {
+			throw new NotFoundException("Client avec l'id " +clientId+" non trouvé");
+		}
+			
+		CompteEpargne compteEpargne = new CompteEpargne();
+		compteEpargne.setNumeroDeCompte(numeroDeCompte);
+		compteEpargne.setSolde(solde);
+		compteEpargne.setClient(optionalClient.get()); 
+	
+		
+	
+		return compteRepository.save(compteEpargne);
+		
+	}
+	
 	public List<Compte> getAllCompte() {
 		// TODO Auto-generated method stub
 		return compteRepository.findAll();
@@ -113,7 +134,19 @@ public class BankServiceImpl implements BankService {
 	
 	/*List<Compte> ComptesClient(compte id) 1- 	compteClient = findCompteByClientId(Long id)*/
 	
-	
+	@Override
+	public List<Compte> findByClientId(Long clientId) {
+		return compteRepository.findByClientId(clientId);  // A TESTER
+	}
+@Override
+	public void deleteCompte(Long compteId) {
+		Optional<Compte> optionalCompte = compteRepository.findById(compteId);
+		if (optionalCompte.isPresent() && optionalCompte.get().getSolde() > -0.1 && optionalCompte.get().getSolde() < 0.1) {
+			compteRepository.deleteById(compteId);
+		} else {
+			throw new NotFoundException("Compte not found with id=" + compteId);
+		}
+	}
 	
 	
 		
