@@ -37,5 +37,10 @@ public class TestRepositoryCompte {
 		
 	}
 	
+//	@Test
+//	public void testfindByClientId(Long idClient) {
+//		
+//	}
+	
 
 }
