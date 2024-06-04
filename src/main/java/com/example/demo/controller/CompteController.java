@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,7 @@ import com.example.demo.model.Compte;
 import com.example.demo.service.BankServiceImpl;
 
 @RestController
-//@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/comptes")
 public class CompteController {
 	
@@ -36,7 +37,7 @@ public class CompteController {
 		return service.getCompteById(id);
 	}
 	
-	//URL => /comptes?typeCompte=courant&idClient=5/6
+	//URL => http://localhost:8080/comptes?typeCompte=courant&idClient=5/6
 	@PostMapping("")
 	public Compte addCompte(@RequestBody Compte compte, @RequestParam(value="typeCompte",required=false) String typeCompte,@RequestParam(value="idClient") Long idClient) {//a voir si type de compte est dans l'objet compte renvoyé par Angular
 		
