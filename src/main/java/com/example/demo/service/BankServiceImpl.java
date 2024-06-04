@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.exception.BankException;
-import com.example.demo.exception.BankException;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.Client;
 import com.example.demo.model.Compte;
@@ -33,6 +32,10 @@ public class BankServiceImpl implements BankService {
 		this.clientRepository = clientRepository;
 		this.compteRepository = compteRepository ;
 	}
+	
+	
+	//CLIENTS
+	
 	@Override
 	public Optional<Client> getClientById(Long id) {
 	
@@ -56,28 +59,35 @@ public class BankServiceImpl implements BankService {
 		
 	}
 	@Override
-	public void deleteClient(Long id) //throws NotFoundException
-	{
-//		if(!clientRepository.existsById(id))
-//			throw new NotFoundException("account not found with id=" +id); 
-//	if(	clientRepository.findById(id).get().getCompteCourant().getInfos().getSolde() == 0.0) {
-//		
-//		clientRepository.deleteById(id);
-//	}else throw new BankException("Pas de suppression possible car le compte a un solde positif ou négatif" +clientRepository.findById(id).get().getCompteCourant().getInfos().getSolde() );
-//		
-//		
-//		if(!clientRepository.existsById(id))
-//			throw new NotFoundException("account not found with id=" +id); 
-//		if(	clientRepository.findById(id).get().getCompteCourant().getSolde()==0.0 || clientRepository.findById(id).get().getCompteEpargne().getSolde() == 0.0 ) {
-//			clientRepository.deleteById(id);
-//	}else throw new BankException("Pas de suppression possible car le compte a un solde positif ou négatif");
+	public void deleteClient(Long id) { //throws NotFoundException 
+
 		clientRepository.deleteById(id);
 		
 }
+	
+	//COMPTES
 
-
+	public List<Compte> getAllCompte() {
+		// TODO Auto-generated method stub
+		return compteRepository.findAll();
+	}
+	@Override
+	public Optional<Compte> getCompteById(Long id) {
+		return compteRepository.findById(id); 
+	}
 
 	
+	//Liste des comptes d'1 client 
+	@Override
+	public List<Compte> findByClientId(Long clientId) {
+		return compteRepository.findByClientId(clientId);  // A TESTER
+	}
+	
+	
+	public List<Compte> comptesADecouvert(double solde){
+		return compteRepository.findBySoldeLessThan(solde);
+		
+	}
 	
 	public CompteCourant addCompteCourant(Long clientId,String numeroDeCompte, double solde) {
 		
@@ -96,7 +106,10 @@ public class BankServiceImpl implements BankService {
 	
 		return compteRepository.save(compteCourant);
 	}
-	// TODO AddCompteEpargne
+	
+	
+
+	
 
 	@Override
 	public CompteEpargne addCompteEpargne(Long clientId,String numeroDeCompte, double solde) {
@@ -118,29 +131,11 @@ public class BankServiceImpl implements BankService {
 		
 	}
 	
-	public List<Compte> getAllCompte() {
-		// TODO Auto-generated method stub
-		return compteRepository.findAll();
-	}
-	@Override
-	public Optional<Compte> getCompteById(Long id) {
-		return compteRepository.findById(id); //  findById()
-	}
-	
-	//Liste des comptes d'1 client : findByClientId >renvoie comptes
-	
-	//UpdateCompte
+
 	
 	//Delete 1 seul type de compte 
 	
-	
-	/*List<Compte> ComptesClient(compte id) 1- 	compteClient = findCompteByClientId(Long id)*/
-	
 	@Override
-	public List<Compte> findByClientId(Long clientId) {
-		return compteRepository.findByClientId(clientId);  // A TESTER
-	}
-@Override
 	public void deleteCompte(Long compteId) {
 		Optional<Compte> optionalCompte = compteRepository.findById(compteId);
 		if (optionalCompte.isPresent() && optionalCompte.get().getSolde() > -0.1 && optionalCompte.get().getSolde() < 0.1) {
@@ -157,11 +152,6 @@ public class BankServiceImpl implements BankService {
 		
 	}
 
-public List<Compte> comptesADecouvert(double solde){
-	return compteRepository.findBySoldeLessThan(solde);
-	
-}
-	
 	
 		
 }

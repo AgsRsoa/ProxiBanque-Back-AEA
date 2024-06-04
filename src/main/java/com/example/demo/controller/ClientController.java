@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -20,12 +21,11 @@ import com.example.demo.dto.MessageDto;
 import com.example.demo.model.Client;
 import com.example.demo.model.CompteCourant;
 import com.example.demo.model.CompteEpargne;
-import com.example.demo.model.IdentiteCompte;
 import com.example.demo.service.BankService;
 
 
 @RestController
-//@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("clients")
 public class ClientController {
 	

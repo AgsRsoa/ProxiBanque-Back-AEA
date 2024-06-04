@@ -19,7 +19,7 @@ import jakarta.persistence.ManyToOne;
 @DiscriminatorColumn(name="type_compte") //fixe la valeur avec les sous classes
 public class Compte {
 	
-	//méthodes créditer et débiter
+	
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class Compte {
 	
 	
 	public Compte() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	
