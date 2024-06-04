@@ -9,6 +9,7 @@ import com.example.demo.model.Compte;
 public interface CompteRepository extends JpaRepository<Compte, Long>{
 	
 	List<Compte> findByClientId(Long idClient);
+	List<Compte> findBySoldeLessThan(double solde);
 	
 
 }

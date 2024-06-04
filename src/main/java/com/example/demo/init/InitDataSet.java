@@ -56,7 +56,16 @@ public class InitDataSet {
 		Client c6 = new Client("Barbara","Oreilly",a6);
 		
 		service.addClient(c6);
-		service.addCompteEpargne(c6.getId(), "C5", -500.0);
+		service.addCompteEpargne(c6.getId(), "C6", -500.0);
+		
+		//Client avec 2 types de compte
+		
+		Adresse a7 = new Adresse("Palo Alto","77777","(999)567-376");
+		Client c7 = new Client("Tom","DoubleComptes",a7);
+		
+		service.addClient(c7);
+		service.addCompteCourant(c7.getId(),"CC7",0.0); 
+		service.addCompteEpargne(c7.getId(), "CE7", 0.0);
 	
 } 
 	

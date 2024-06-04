@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.BankException;
+import com.example.demo.exception.BankException;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.Client;
 import com.example.demo.model.Compte;
@@ -97,7 +99,7 @@ public class BankServiceImpl implements BankService {
 	// TODO AddCompteEpargne
 
 	@Override
-	public CompteEpargne addCompteEpargne(Long clientId, String numeroDeCompte, double solde) {
+	public CompteEpargne addCompteEpargne(Long clientId,String numeroDeCompte, double solde) {
 		
 		Optional<Client> optionalClient  = clientRepository.findById(clientId);
 		
@@ -143,10 +145,22 @@ public class BankServiceImpl implements BankService {
 		Optional<Compte> optionalCompte = compteRepository.findById(compteId);
 		if (optionalCompte.isPresent() && optionalCompte.get().getSolde() > -0.1 && optionalCompte.get().getSolde() < 0.1) {
 			compteRepository.deleteById(compteId);
-		} else {
-			throw new NotFoundException("Compte not found with id=" + compteId);
+		} else if(optionalCompte.isEmpty()) {
+			throw new NotFoundException("COMPTE AVEC L'ID " + compteId +"INEXISTANT.");
 		}
+		else if(optionalCompte.get().getSolde() > -0.1) {
+			throw new BankException("SUPPRESSION IMPOSSIBLE.CE COMPTE POSSEDE UN SOLDE POSITIF.");
+		}
+		else if(optionalCompte.get().getSolde() < 0.1) {
+			throw new BankException("SUPPRESSION IMPOSSIBLE.CE COMPTE POSSEDE UN SOLDE NEGATIF.");
+		}
+		
 	}
+
+public List<Compte> comptesADecouvert(double solde){
+	return compteRepository.findBySoldeLessThan(solde);
+	
+}
 	
 	
 		
