@@ -52,5 +52,14 @@ public class CompteController {
 	public void deleteCompte(@PathVariable("id") Long id) {
 		service.deleteCompte(id);
 	}
+	
+	//http://localhost:8080/comptes/decouvert?solde=-0.1
+	@GetMapping("decouvert")
+	public List<Compte> comptesADecouvert(@RequestParam(value="solde",required=false) Double solde){
+		if(solde==null) {
+			return service.getAllCompte();
+		}
+		return service.comptesADecouvert(solde);
+	}
 
 }
